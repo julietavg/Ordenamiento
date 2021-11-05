@@ -5,6 +5,7 @@ import java.util.Random;
 /**
  * Implementación de algunos algoritmos de ordenamiento.
  * @author Julieta Vargas Gutiérrez 318341945
+ * @author Maria Reyes
  * @version 1.0 Noviembre 2021.
  * @since Estructuras de datos 2022-1.
  */
