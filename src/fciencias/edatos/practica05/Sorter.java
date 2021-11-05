@@ -1,4 +1,4 @@
-package fciencias.edatos.practica05;
+package fciencias.edatos.practica04;
 import java.util.Arrays;
 import java.util.Random;
 
