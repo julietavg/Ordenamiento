@@ -1,4 +1,4 @@
-package fciencias.edatos.practica05;
+package fciencias.edatos.practica04;
 /**
 * Búsqueda binaria en un arreglo.
 * @author Julieta Vargas Gutiérrez 318341945
