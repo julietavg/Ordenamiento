@@ -47,7 +47,7 @@ public class BinarySearch{
                 if(r == -1)
                      System.out.println("El elemento no esta):");
                   else
-                 System.out.println("El elemento está en la posición" + r);
+                 System.out.println("El elemento está en la posición  " + r);
     }
                     
                     
