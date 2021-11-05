@@ -1,4 +1,4 @@
-package fciencias.edatos.practica05.sorter;
+package fciencias.edatos.practica05;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -116,7 +116,7 @@ public class Sorter{
         
        public static void main(String[] args) {
   
-               int[] arr1 = generate(0, 10);
+               int[] arr1 = generate(10000, 15);
          //int arr1= [10, 15];
                 
 		//int[] arr2 = Arrays.copyOf(arr1, arr1.length);
