@@ -1,11 +1,12 @@
 package fciencias.edatos.practica04;
+
 import java.util.Arrays;
 import java.util.Random;
 
 /**
  * Implementación de algunos algoritmos de ordenamiento.
  * @author Julieta Vargas Gutiérrez 318341945
- * @author Maria Reyes
+ * @auhor Reyes Ramos Luz María 318211073
  * @version 1.0 Noviembre 2021.
  * @since Estructuras de datos 2022-1.
  */
@@ -78,14 +79,129 @@ public class Sorter{
              return j;   
             }
            
-          // MERGESORT MEJORADO
           
           
           
+          // MERGESORT 
+         /**
+	 * Ordena un arreglo de forma ascendente con merge sort.
+	 * @param arr el arreglo a ordenar.
+	 */
+	public static void mergeSort(int[] arr){
+		mergeSort(arr, 0, arr.length-1);
+	}
+
+	/**
+	 * Auxiliar de mergeSort para dividir y mezclar.
+	 * @param arr el arreglo con los elementos a dividir y mezclar.
+	 * @param lo el índice de inicio a modificación.
+	 * @param hi el índice del último elemento a modificación.
+	 */
+	private static void mergeSort(int[] arr, int lo, int hi){
+		// Cuando ya esta ordenado el fragmento de lo hasta hi
+		if(hi <= lo)
+			return;
+
+		// La mitad del corte del arreglo
+		int mid = lo + (hi-lo) / 2;
+
+		mergeSort(arr, lo, mid);
+		mergeSort(arr, mid+1, hi);
+
+		merge(arr, lo, mid, hi);
+	}
+
+	/**
+	 * Mezcla dos arreglos, ordenando de menor a mayor.
+	 * @param arr el arreglo con los elementos a modificar.
+	 * @param lo el inicio de la primera mitad.
+	 * @param mid el índice de la mitad del subarreglo.
+	 * @param hi el índice del último elemento.
+	 */
+	private static void merge(int[] arr, int lo, int mid, int hi){
+		int i = lo;
+		int j = mid+1;
+		int[] aux = Arrays.copyOf(arr, arr.length);
+
+		for(int k = lo ; k <= hi; k++){
+			// Si ya nos acabamos los elementos de la primera mitad
+			if(i > mid)
+				arr[k] = aux[j++];
+			else if(j > hi) // Si ya nos acabamos la segunda mitad
+				arr[k] = aux[i++];
+			else if(aux[j] < aux[i]) // El menor está en la primera mitad
+				arr[k] = aux[j++];
+			else // El manor está en la segunda mitad
+				arr[k] = aux[i++];
+		}
+	}     
           
-          
-          
-            
+        
+      //MergeSort MEJORADO?
+        public static void mergeSortMejorado(int[] arr)
+    {
+        if(arr == null)
+        {
+            return;
+        }
+ 
+        if(arr.length > 1)
+        {
+            int mid = arr.length / 2;
+ 
+            // Corta la parte izquierda
+            int[] izquierda = new int[mid];
+            for(int i = 0; i < mid; i++)
+            {
+                izquierda[i] = arr[i];
+            }
+             
+            // Corta la parte derecha
+            int[] derecha = new int[arr.length - mid];
+            for(int i = mid; i < arr.length; i++)
+            {
+                derecha[i - mid] = arr[i];
+            }
+            mergeSort(izquierda);
+            mergeSort(derecha);
+ 
+            int i = 0;
+            int j = 0;
+            int k = 0;
+ 
+            // Junta la parte derecha e izquierda
+            while(i < izquierda.length && j < derecha.length)
+            {
+                if(izquierda[i] < derecha[j])
+                {
+                    arr[k] = izquierda[i];
+                    i++;
+                }
+                else
+                {
+                    arr[k] = derecha[j];
+                    j++;
+                }
+                k++;
+            }
+           // Agrupa los elementos restantes
+
+            while(i < izquierda.length)
+            {
+                arr[k] = izquierda[i];
+                i++;
+                k++;
+            }
+            while(j < derecha.length)
+            {
+                arr[k] = derecha[j];
+                j++;
+                k++;
+            }
+        }
+    } 
+        
+        
          
 	/**
 	 * Crea un nuevo arreglo con números pseudoaleatorios.
@@ -101,49 +217,47 @@ public class Sorter{
 		return res;
 	}
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+  
         
         
         
        public static void main(String[] args) {
   
-               int[] arr1 = generate(10000, 15);
-         //int arr1= [10, 15];
-                
-		//int[] arr2 = Arrays.copyOf(arr1, arr1.length);
-		//int[] arr3 = Arrays.copyOf(arr1, arr1.length);
-		//System.out.println("No ordenado: " + Arrays.toString(arr1));
-		
-		long inicio = System.currentTimeMillis();
-		//selectionSort(arr1);
+                 int[] arr1 = generate(10000, 15);
+		int[] arr3 = Arrays.copyOf(arr1, arr1.length);
+	
+		long inicio = System.currentTimeMillis()	
 		long fin = System.currentTimeMillis();
 
-		//System.out.println("Ordenado con selectionSort tardó: " + (fin - inicio) + " milisegundos");
-
+		
+                //Tiempo de MergeSort
+                System.out.println("No ordenado: " + Arrays.toString(arr3));
+		inicio = System.currentTimeMillis();
+		mergeSort(arr3);
+		fin = System.currentTimeMillis();
+		System.out.println("Ordenado con MergeSort: " + Arrays.toString(arr3));
+		System.out.println("Ordenado con mergeSort tardó: " + (fin - inicio) + " milisegundos");
 		
 
-		//inicio = System.currentTimeMillis();
-		//insertionSort(arr2);
-		//fin = System.currentTimeMillis();
-
-		//System.out.println("Ordenado con insertionSort tardó: " + (fin - inicio) + " milisegundos");
+                //Tiempo Mejorado de MergeSort
+                
+                System.out.println("No ordenado: " + Arrays.toString(arr3));
+		inicio = System.currentTimeMillis();
+		mergeSortMejorado(arr3);
+		fin = System.currentTimeMillis();
+		System.out.println("Ordenado con MergeSort: " + Arrays.toString(arr3));
+		System.out.println("Ordenado con mergeSort tardó: " + (fin - inicio) + " milisegundos");
 		
+                
+                
 		
+		//Tiempo de QuickSort
 		System.out.println("No ordenado: " + Arrays.toString(arr1));
 		inicio = System.currentTimeMillis();
 		quicksort(arr1);
 		fin = System.currentTimeMillis();
-		System.out.println("Ordenado: " + Arrays.toString(arr1));
-		System.out.println("Ordenado con mergeSort tardó: " + (fin - inicio) + " milisegundos");
+		System.out.println("Ordenado con QuickSort: " + Arrays.toString(arr1));
+		System.out.println("Ordenado con quicksort tardó: " + (fin - inicio) + " milisegundos");
 	} 
 	
 }
