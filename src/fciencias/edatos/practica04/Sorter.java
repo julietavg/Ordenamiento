@@ -11,7 +11,7 @@ import java.util.Random;
  * @since Estructuras de datos 2022-1.
  */
 public class Sorter{
-    
+
 	/**
 	 * Cambia de posición dos elementos entre sí de un arreglo de enteros.
 	 * @param arr el arreglo del cual cambiar la posición de los elementos.
@@ -24,8 +24,8 @@ public class Sorter{
 		arr[j] = tmp;
 	}
 
-        
-   ///********* QUICKSORT
+
+  //-----------------------------QuickSort-------------------------------------
 	/**
 	 * Ordena un arreglo de forma ascendente con merge sort.
 	 * @param arr el arreglo a ordenar.
@@ -40,12 +40,12 @@ public class Sorter{
 	 * @param hi el índice del último elemento a modificación.
 	 */
 	 private static void quicksort(int[] arr, int lo, int hi){
-            if(hi <= lo) //Cuando el fragmento esta ordenado lo a hi 
+            if(hi <= lo) //Cuando el fragmento esta ordenado lo a hi
                 return;
             int j = partition(arr,lo,hi);
             quicksort(arr, lo , j-1);
             quicksort(arr, j+1,hi);
-        
+
         }
 
 	/**
@@ -55,34 +55,34 @@ public class Sorter{
 	 * @param hi el índice del último elemento.
          * @return j
 	 */
-	
+
           public static int partition(int[]arr, int lo, int hi){
             int i = lo;
             int j = hi + 1;
             int piv = arr[lo];
-            
+
             while(true){
                while(arr[++i]< piv) if(i == hi){
                     break;
-                }               
+                }
                while(piv < arr[--j])if (j == lo){
                     break;
                 }
                 if (i >= j){
                     break;
-                   
+
                 }
-             swap(arr, i , j);  
+             swap(arr, i , j);
             }
-             
-            swap (arr,lo,j); 
-             return j;   
+
+            swap (arr,lo,j);
+             return j;
             }
-           
-          
-          
-          
-          // MERGESORT 
+
+
+
+
+    //----------------------------- MergeSort -------------------------------------
          /**
 	 * Ordena un arreglo de forma ascendente con merge sort.
 	 * @param arr el arreglo a ordenar.
@@ -134,42 +134,44 @@ public class Sorter{
 			else // El manor está en la segunda mitad
 				arr[k] = aux[i++];
 		}
-	}     
-          
-        
-      //MergeSort MEJORADO?
+	}
+
+
+      //-----------------------------mergeSortMejorado-------------------------------------
+
         public static void mergeSortMejorado(int[] arr)
     {
         if(arr == null)
         {
             return;
         }
- 
+
         if(arr.length > 1)
         {
             int mid = arr.length / 2;
- 
-            int[] izquierda = new int[mid];  // Corta la parte izquierda
+
+            // Corta la parte izquierda
+            int[] izquierda = new int[mid];
             for(int i = 0; i < mid; i++)
             {
                 izquierda[i] = arr[i];
             }
-             
-         
-            int[] derecha = new int[arr.length - mid];   // Corta la parte derecha
+
+            // Corta la parte derecha
+            int[] derecha = new int[arr.length - mid];
             for(int i = mid; i < arr.length; i++)
             {
                 derecha[i - mid] = arr[i];
             }
             mergeSort(izquierda);
             mergeSort(derecha);
- 
+
             int i = 0;
             int j = 0;
             int k = 0;
- 
-          
-            while(i < izquierda.length && j < derecha.length)   // Junta la parte derecha e izquierda
+
+            // Junta la parte derecha e izquierda
+            while(i < izquierda.length && j < derecha.length)
             {
                 if(izquierda[i] < derecha[j])
                 {
@@ -183,8 +185,9 @@ public class Sorter{
                 }
                 k++;
             }
-           
-            while(i < izquierda.length)// Agrupa los elementos restantes
+           // Agrupa los elementos restantes
+
+            while(i < izquierda.length)
             {
                 arr[k] = izquierda[i];
                 i++;
@@ -197,10 +200,10 @@ public class Sorter{
                 k++;
             }
         }
-    } 
-        
-        
-         
+    }
+
+
+
 	/**
 	 * Crea un nuevo arreglo con números pseudoaleatorios.
 	 * @param n el tamaño del arreglo a crear.
@@ -214,48 +217,49 @@ public class Sorter{
 			res[i] = rn.nextInt(max);
 		return res;
 	}
-        
-  
-        
-        
-        
+
+
+  //-----------------------------  MAIN      -------------------------------------
+
        public static void main(String[] args) {
-  
-                 int[] arr1 = generate(10000, 15);
-		int[] arr3 = Arrays.copyOf(arr1, arr1.length);
-	
-		long inicio = System.currentTimeMillis();	
+
+          int[] arr1 = generate(10000, 15);
+          int[] arr2 = Arrays.copyOf(arr1, arr1.length);
+		      int[] arr3 = Arrays.copyOf(arr1, arr1.length);
+
+		long inicio = System.currentTimeMillis();
 		long fin = System.currentTimeMillis();
 
-		
+
+       System.out.println("No ordenado: " + Arrays.toString(arr1));
                 //Tiempo de MergeSort
-                System.out.println("No ordenado: " + Arrays.toString(arr3));
+
 		inicio = System.currentTimeMillis();
-		mergeSort(arr3);
+		mergeSort(arr1);
 		fin = System.currentTimeMillis();
-		System.out.println("Ordenado con MergeSort: " + Arrays.toString(arr3));
+		System.out.println("Ordenado con MergeSort: " + Arrays.toString(arr1));
 		System.out.println("Ordenado con mergeSort tardó: " + (fin - inicio) + " milisegundos");
-		
+
 
                 //Tiempo Mejorado de MergeSort
-                
-                System.out.println("No ordenado: " + Arrays.toString(arr3));
+
+    //System.out.println("No ordenado: " + Arrays.toString(arr2));
 		inicio = System.currentTimeMillis();
-		mergeSortMejorado(arr3);
+		mergeSortMejorado(arr2);
 		fin = System.currentTimeMillis();
-		System.out.println("Ordenado con MergeSort: " + Arrays.toString(arr3));
+		System.out.println("Ordenado con MergeSort: " + Arrays.toString(arr2));
 		System.out.println("Ordenado con mergeSort tardó: " + (fin - inicio) + " milisegundos");
-		
-                
-                
-		
+
+
+
+
 		//Tiempo de QuickSort
-		System.out.println("No ordenado: " + Arrays.toString(arr1));
+		//System.out.println("No ordenado: " + Arrays.toString(arr3));
 		inicio = System.currentTimeMillis();
-		quicksort(arr1);
+		quicksort(arr3);
 		fin = System.currentTimeMillis();
-		System.out.println("Ordenado con QuickSort: " + Arrays.toString(arr1));
+		System.out.println("Ordenado con QuickSort: " + Arrays.toString(arr3));
 		System.out.println("Ordenado con quicksort tardó: " + (fin - inicio) + " milisegundos");
-	} 
-	
+	}
+
 }
