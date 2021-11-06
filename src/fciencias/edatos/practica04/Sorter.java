@@ -149,15 +149,14 @@ public class Sorter{
         {
             int mid = arr.length / 2;
  
-            // Corta la parte izquierda
-            int[] izquierda = new int[mid];
+            int[] izquierda = new int[mid];  // Corta la parte izquierda
             for(int i = 0; i < mid; i++)
             {
                 izquierda[i] = arr[i];
             }
              
-            // Corta la parte derecha
-            int[] derecha = new int[arr.length - mid];
+         
+            int[] derecha = new int[arr.length - mid];   // Corta la parte derecha
             for(int i = mid; i < arr.length; i++)
             {
                 derecha[i - mid] = arr[i];
@@ -169,8 +168,8 @@ public class Sorter{
             int j = 0;
             int k = 0;
  
-            // Junta la parte derecha e izquierda
-            while(i < izquierda.length && j < derecha.length)
+          
+            while(i < izquierda.length && j < derecha.length)   // Junta la parte derecha e izquierda
             {
                 if(izquierda[i] < derecha[j])
                 {
@@ -184,9 +183,8 @@ public class Sorter{
                 }
                 k++;
             }
-           // Agrupa los elementos restantes
-
-            while(i < izquierda.length)
+           
+            while(i < izquierda.length)// Agrupa los elementos restantes
             {
                 arr[k] = izquierda[i];
                 i++;
@@ -226,7 +224,7 @@ public class Sorter{
                  int[] arr1 = generate(10000, 15);
 		int[] arr3 = Arrays.copyOf(arr1, arr1.length);
 	
-		long inicio = System.currentTimeMillis()	
+		long inicio = System.currentTimeMillis();	
 		long fin = System.currentTimeMillis();
 
 		
