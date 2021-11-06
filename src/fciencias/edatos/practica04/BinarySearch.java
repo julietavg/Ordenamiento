@@ -1,8 +1,9 @@
 package fciencias.edatos.practica04;
+
 /**
 * Búsqueda binaria en un arreglo.
 * @author Julieta Vargas Gutiérrez 318341945
-* @author Maria Reyes
+* @author Reyes Ramos Luz María 318211073
 * @version 1.0 Noviembre 2021.
 * @since Estructuras de datos 2021-2.
 */
@@ -39,10 +40,11 @@ public class BinarySearch{
         }
         return -1; //No está presente
     }
-
+        
+/**
         public static void main(String[] args) {
 		int[] arr = {1, 5, 7, 9, 12, 34, 57, 80, 134, 567, 894, 900, 930, 989, 1034, 1067, 1134, 2456};
-		int elem = 1;
+		int elem = 80;
                 int r = (find(arr,elem));
                 if(r == -1)
                      System.out.println("El elemento no esta):");
@@ -50,5 +52,6 @@ public class BinarySearch{
                  System.out.println("El elemento está en la posición  " + r);
     }
                     
-                    
+   */
+        
    }
