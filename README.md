@@ -15,6 +15,6 @@ que se nos dificulto aplicar indices
 
 ## Compilación y ejecución 
 Para compilar la practica se debe usar ant build y ant jar
-Para ejucar ant run
+Para ejecutar ant run
 
 
